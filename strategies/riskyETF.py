@@ -30,6 +30,8 @@ def trade(exchange):
     2 WFC
     '''
     books_dict = exchange.latest_books
+    holdings = exchange.holdings
+    holds = holdings['XLF']
     trades = []
     Bondb = books_dict['BOND'][0]
     GSb = books_dict['GS'][0]
@@ -56,9 +58,9 @@ def trade(exchange):
 
         predicted_fp = (3 * bfp + 2 * gfp + 3 * mfp + 2 * wfp) / 10
 
-        if highest_buy_xlf > predicted_fp:
+        if highest_buy_xlf > predicted_fp and holds > -80:
             trades.append(('SELL', 'XLF', highest_buy_xlf, buy_size))
-        if lowest_sell_xlf < predicted_fp:
+        if lowest_sell_xlf < predicted_fp and holds < 80:
             trades.append(('BUY', 'XLF', lowest_sell_xlf, sell_size))
     return trades
 
