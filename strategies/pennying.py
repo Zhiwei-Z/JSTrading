@@ -3,7 +3,7 @@ def trade(exchange):
     # format of data, {type, symbol, buy: [[prize, size],...], sell[[prize, size],...]}
     '''pennnying strategy is to always buy at best_bid + 1, sell at best_offer - 1.'''
     trades = []
-    if data['type'] == 'book' and data['symbol'] == "GS":
+    if data['type'] == 'book' and data['symbol'] in ("GS", "MS", "WFC"):
         best_bid = highest_buy(data)
         best_offer = lowest_sell(data)
         if best_bid > best_offer:
