@@ -10,8 +10,8 @@ def trade(exchange):
         best_bid = highest_buy(GSb)
         best_offer = lowest_sell(GSb)
         if best_bid[0] + 1 < best_offer[0] - 1:
-            trades.append(('SELL', 'GS', best_offer[0] - 1, best_offer[1]))
-            trades.append(('BUY', 'GS', best_bid[0] + 1, best_bid[1]))
+            trades.append(('BUY', 'GS', best_offer[0] - 1, best_offer[1]))
+            trades.append(('SELL', 'GS', best_bid[0] + 1, best_bid[1]))
         # trades.append(('BUY', 'GS', best_offer[0] + 1, best_offer[1]))
         # trades.append(('SELL', 'GS', best_bid[0] - 1, best_bid[1]))
 
