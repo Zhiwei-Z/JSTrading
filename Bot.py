@@ -20,7 +20,7 @@ class Bot:
         data = self.exchange.read()
         while data:
             trades = []
-            if data['type'] == "fill" and data["symbol"] == "BOND":
+            if data['type'] == "fill":
                 print("Order filled:", data["dir"], data["size"],data["symbol"])
             for strategy in self.strategies:
                 trades.extend(strategy.trade(self.exchange))
