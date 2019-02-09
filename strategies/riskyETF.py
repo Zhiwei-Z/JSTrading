@@ -60,5 +60,5 @@ def trade(exchange):
             trades.append(('SELL', 'XLF', highest_buy_xlf, buy_size))
         if lowest_sell_xlf < predicted_fp:
             trades.append(('BUY', 'XLF', lowest_sell_xlf, sell_size))
-        return trades
+    return trades
 
