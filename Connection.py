@@ -49,10 +49,10 @@ class ExchangeConnection:
                 if data['type'] == "fill":
                     if data['dir'] == "BUY":
                         self.holdings[data["symbol"]] += data["size"]
-                        self.holdings["USD"] -= int(data["price"])*int(data['size'])
+                        self.holdings["USD"] -= int(data["price"]) * int(data['size'])
                     elif data['dir'] == "SELL":
                         self.holdings[data["symbol"]] -= data["size"]
-                        self.holdings["USD"] += int(data["price"])*int(data['size'])
+                        self.holdings["USD"] += int(data["price"]) * int(data['size'])
                     print(self.holdings)
                     print("Order filled:", data["dir"], data["size"], data["symbol"], "at price", data["price"])
             return data
@@ -65,7 +65,7 @@ class ExchangeConnection:
         trade = {'type': 'add', 'order_id': self.order_id, 'symbol': symbol,
                  'dir': buysell, 'price': price, 'size': size}
         self.order_id += 1
-        # print(trade)
+        print(trade)
         self.write(trade)
 
     def trade_batch(self, trades):
