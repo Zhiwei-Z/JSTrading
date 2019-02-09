@@ -51,7 +51,7 @@ class ExchangeConnection:
                         self.holdings[data["symbol"]] += data["size"]
                     elif data['dir'] == "SELL":
                         self.holdings[data["symbol"]] -= data["size"]
-                    print(self.holdings["BOND"])
+                    print(self.holdings)
                     print("Order filled:", data["dir"], data["size"], data["symbol"], "at price", data["price"])
             return data
 
