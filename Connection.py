@@ -21,6 +21,15 @@ class ExchangeConnection:
         assert hello['type'] == 'hello'
 
         self.order_id = 0
+        self.latest_books = {
+            "BOND": [None],
+            "VALBZ": [None],
+            "VALE": [None],
+            "GS": [None],
+            "MS": [None],
+            "WFC": [None],
+            "XLF": [None]
+        }
 
     def read(self, store_last=True):  # read from exchange
         data = self.stream.readline()
@@ -30,6 +39,8 @@ class ExchangeConnection:
             data = json.loads(data)
             if store_last:
                 self.last_data = data
+                if data["type"] == "book":
+                    self.latest_books[data["symbol"]][0] = data
             return data
 
     def write(self, data):  # write to exchange
