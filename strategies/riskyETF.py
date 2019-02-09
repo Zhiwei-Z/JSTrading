@@ -38,7 +38,7 @@ def trade(exchange):
     MSb = books_dict['MS'][0]
     WFCb = books_dict['WFC'][0]
     XLFb = books_dict['XLF'][0]
-    if Bondb and GSb and MSb and WFCb:
+    if Bondb and GSb and MSb and WFCb and XLFb:
         bfp = fair_price(Bondb)
         gfp = fair_price(GSb)
         mfp = fair_price(MSb)
