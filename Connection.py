@@ -3,11 +3,14 @@ import json
 
 
 class ExchangeConnection:
-    def __init__(self, test, team_name='', port=25000):
-        if test:
-            host_name = "test-exch-" + team_name
+    def __init__(self, exchange, team_name='THREESTINKYCOBBLERS'):
+        if exchange in ("0", "1", "2"):
+            host_name = "test-exch-threestinkycobblers"
+            port = 25000+int(exchange)
+
         else:
             host_name = "production"
+            port = 25000
 
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.connect((host_name, port))
@@ -19,7 +22,7 @@ class ExchangeConnection:
 
         self.order_id = 0
 
-    def read(self, store_last=True):
+    def read(self, store_last=True):  # read from exchange
         data = self.stream.readline()
         if data == "":
             return None
@@ -29,7 +32,7 @@ class ExchangeConnection:
                 self.last_data = data
             return data
 
-    def write(self, data):
+    def write(self, data):  # write to exchange
         json.dump(data, self.stream)
         self.stream.write("\n")
 

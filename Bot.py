@@ -13,6 +13,10 @@ class Bot:
         self.strategies = [import_module(strategy) for strategy in strategies]
 
     def run(self):
+        """
+        infinite loop while connected
+        :return:
+        """
         data = self.exchange.read()
         while data:
             trades = []

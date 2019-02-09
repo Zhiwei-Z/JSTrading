@@ -8,14 +8,14 @@ from Connection import ExchangeConnection
 from Bot import Bot
 
 
-def main(strategies, test=True):
+def main(strategies, exchange):
     """
     Run bot with strategies as input
     :param strategies:
     :param test:
     :return:
     """
-    exchange_connection = ExchangeConnection(test)  # flag for testing
+    exchange_connection = ExchangeConnection(exchange)  # flag for testing
     print("Successfully Connected")
     bot = Bot(exchange_connection, strategies)
     print("Bot Initialized")
@@ -25,14 +25,18 @@ def main(strategies, test=True):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('strategies')
-    parser.add_argument('--test', action='store_true', default=False)
+    parser.add_argument('-e', '--exchange', type=str)
     args = parser.parse_args()
 
     strategies = args.strategies.split(',')
+    exchange = args.exchange
+
+    print("Using strategies:", strategies)
+    print("Echanging in:", exchange)
 
     while True:
         try:
-            main(strategies, args.test)
+            main(strategies, exchange)
         except socket_error as serr:
             if serr.errno != errno.ECONNREFUSED:
                 raise serr
