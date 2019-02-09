@@ -26,6 +26,7 @@ def trade(exchange):
         if best_bid[0] - 1 > best_offer[0] + 1:
             trades.append(('BUY', 'WFC', best_offer[0] + 1, best_offer[1]))
             trades.append(('SELL', 'WFC', best_bid[0] - 1, best_bid[1]))
+    return trades
 
 
     # if books_dict['type'] == 'book' and books_dict['symbol'] in ("GS", "MS", "WFC"):
