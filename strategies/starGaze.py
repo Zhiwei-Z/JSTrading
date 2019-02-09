@@ -10,7 +10,7 @@ def lowest_sell(book):
 
 def highest_buy(book):
     bids = book['buy']
-    h = 100000000
+    h = 0
     s = 0
     for price, size in bids:
         h = max(h, price)
@@ -47,8 +47,8 @@ def trade(exchange):
         hb, buy_size = highest_buy(slow_book)
         ls, sell_size = lowest_sell(slow_book)
         if hb > fp:
-            trades.append(('SELL', slow, hb, sell_size))
+            trades.append(('SELL', slow, hb, buy_size))
         if ls < fp:
-            trades.append(('BUY', slow, ls, buy_size))
+            trades.append(('BUY', slow, ls, sell_size))
 
     return trades
