@@ -71,9 +71,6 @@ class ExchangeConnection:
         self.order_id += 1
         if self.order_id > 5000:
             self.cancel(self.order_id - 5000)
-        if self.order_id % 1000 == 0:
-            print(self.time - time.time())
-            self.time = time.time()
         # print(trade)
         self.write(trade)
 
