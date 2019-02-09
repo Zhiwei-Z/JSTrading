@@ -1,5 +1,5 @@
 def trade(exchange):
-    books_dict = exchange.last_books
+    books_dict = exchange.lastest_books
     # format of data, {type, symbol, buy: [[prize, size],...], sell[[prize, size],...]}
     '''pennnying strategy is to always buy at best_bid + 1, sell at best_offer - 1.'''
     trades = []
