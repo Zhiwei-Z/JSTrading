@@ -40,7 +40,7 @@ class ExchangeConnection:
             if store_last:
                 self.last_data = data
                 if data["type"] == "book":
-                    self.latest_books[data["symbol"]] = data
+                    self.latest_books[data["symbol"]][0] = data
             return data
 
     def write(self, data):  # write to exchange
