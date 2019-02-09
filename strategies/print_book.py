@@ -1,5 +1,7 @@
+import numpy as np
 def trade(exchange):
     data = exchange.last_data
     trades = []
-    print(data)
+    if np.random.random_sample() < 0.02:
+        print(data)
     return []
