@@ -7,8 +7,6 @@ def import_module(module_name):
     return importlib.import_module(module_name)
 
 
-
-
 class Bot:
     def __init__(self, exchange, strategies):
         self.exchange = exchange
@@ -22,6 +20,8 @@ class Bot:
         data = self.exchange.read()
         while data:
             trades = []
+            if data['type'] == "fill" and data["symbol"] == "BOND":
+                print(data)
             for strategy in self.strategies:
                 trades.extend(strategy.trade(self.exchange))
             self.exchange.trade_batch(trades)

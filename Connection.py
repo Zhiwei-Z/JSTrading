@@ -19,6 +19,9 @@ class ExchangeConnection:
         self.write({"type": "hello", "team": team_name})
         hello = self.read()
         assert hello['type'] == 'hello'
+        self.holdings = {}
+        for symbol_position_pair in hello["symbols"]:
+            self.holdings[symbol_position_pair["symbol"]] = symbol_position_pair["position"]
 
         self.last_data = None
 
