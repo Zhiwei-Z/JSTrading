@@ -67,8 +67,14 @@ class ExchangeConnection:
         trade = {'type': 'add', 'order_id': self.order_id, 'symbol': symbol,
                  'dir': buysell, 'price': price, 'size': size}
         self.order_id += 1
+        if self.order_id>2000:
+            self.cancel(self.order_id-1999)
         # print(trade)
         self.write(trade)
+
+    def cancel(self, order_id):
+        cancel = {'type': 'cancel', 'order_id': order_id}
+        self.write(cancel)
 
     def trade_batch(self, trades):
         for buysell, symbol, price, size in trades:
