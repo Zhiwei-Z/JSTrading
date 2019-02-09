@@ -6,7 +6,7 @@ class ExchangeConnection:
     def __init__(self, exchange, team_name='THREESTINKYCOBBLERS'):
         if exchange in ("0", "1", "2"):
             host_name = "test-exch-threestinkycobblers"
-            port = 25000+int(exchange)
+            port = 25000 + int(exchange)
 
         else:
             host_name = "production"
@@ -51,6 +51,6 @@ class ExchangeConnection:
     def convert(self, buysell, symbol, size):
         trade = {'type': 'convert', 'order_id': self.order_id,
                  'symbol': symbol, 'dir': buysell, 'size': size}
-        self.order_Id += 1
+        self.order_id += 1
         print(trade)
         self.write(trade)
