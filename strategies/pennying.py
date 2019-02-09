@@ -1,15 +1,37 @@
 def trade(exchange):
-    data = exchange.last_data
+    books_dict = exchange.last_books
     # format of data, {type, symbol, buy: [[prize, size],...], sell[[prize, size],...]}
     '''pennnying strategy is to always buy at best_bid + 1, sell at best_offer - 1.'''
     trades = []
-    if data['type'] == 'book' and data['symbol'] in ("GS", "MS", "WFC"):
-        best_bid = highest_buy(data)
-        best_offer = lowest_sell(data)
-        if best_bid > best_offer:
-            trades.append(('SELL', data['symbol'], best_bid[0] + 1, 10))
-            trades.append(('SELL', data['symbol'], best_offer[0] - 1, 10))
-    return trades
+    GSb = books_dict['GS'][0]
+    MSb = books_dict['MS'][0]
+    WFCb = books_dict['WFC'][0]
+    best_bid = highest_buy(GSb)
+    best_offer = lowest_sell(GSb)
+    if best_bid[0] - 1 > best_offer[0] + 1:
+        trades.append(('BUY', 'GS', best_offer[0] + 1, best_offer[1]))
+        trades.append(('SELL', 'GS', best_bid[0] - 1, best_bid[1]))
+
+    best_bid = highest_buy(MSb)
+    best_offer = lowest_sell(MSb)
+    if best_bid[0] - 1 > best_offer[0] + 1:
+        trades.append(('BUY', 'MS', best_offer[0] + 1, best_offer[1]))
+        trades.append(('SELL', 'MS', best_bid[0] - 1, best_bid[1]))
+
+    best_bid = highest_buy(WFCb)
+    best_offer = lowest_sell(WFCb)
+    if best_bid[0] - 1 > best_offer[0] + 1:
+        trades.append(('BUY', 'WFC', best_offer[0] + 1, best_offer[1]))
+        trades.append(('SELL', 'WFC', best_bid[0] - 1, best_bid[1]))
+
+
+    # if books_dict['type'] == 'book' and books_dict['symbol'] in ("GS", "MS", "WFC"):
+    #     best_bid = highest_buy(books_dict)
+    #     best_offer = lowest_sell(books_dict)
+    #     if best_bid > best_offer:
+    #         trades.append(('SELL', books_dict['symbol'], best_bid[0] + 1, 10))
+    #         trades.append(('SELL', books_dict['symbol'], best_offer[0] - 1, 10))
+    # return trades
 
 
 def lowest_sell(book):
