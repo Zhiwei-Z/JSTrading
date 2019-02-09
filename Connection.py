@@ -56,6 +56,7 @@ class ExchangeConnection:
                     print(self.holdings)
                     print("Order", data["order_id"], "filled:", data["dir"], data["size"], data["symbol"], "at price",
                           data["price"])
+                    print("Current order id", self.order_id)
             return data
 
     def write(self, data):  # write to exchange
