@@ -54,7 +54,8 @@ class ExchangeConnection:
                         self.holdings[data["symbol"]] -= data["size"]
                         self.holdings["USD"] += int(data["price"]) * int(data['size'])
                     print(self.holdings)
-                    print("Order filled:", data["dir"], data["size"], data["symbol"], "at price", data["price"])
+                    print("Order", data["order_id"], "filled:", data["dir"], data["size"], data["symbol"], "at price",
+                          data["price"])
             return data
 
     def write(self, data):  # write to exchange
