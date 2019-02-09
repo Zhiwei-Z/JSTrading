@@ -21,7 +21,7 @@ class Bot:
         while data:
             trades = []
             if data['type'] == "fill":
-                print("Order filled:", data["dir"], data["size"],data["symbol"])
+                print("Order filled:", data["dir"], data["size"],data["symbol"],"at price",data["price"])
             for strategy in self.strategies:
                 trades.extend(strategy.trade(self.exchange))
             self.exchange.trade_batch(trades)
