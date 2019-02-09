@@ -5,10 +5,12 @@ def trade(exchange):
     trades = []
     if data['type'] == 'book' and data['symbol'] == "GS":
         bids = data['buy']
-        best_bid = bids[0]
-        trades.append(('SELL', data['symbol'], best_bid[0] + 1, 10))
-
+        if bids != []:
+            best_bid = bids[0]
         offers = data['sell']
-        best_offer = offers[0]
-        trades.append(('SELL', data['symbol'], best_offer[0] - 1, 10))
+        if offers != []:
+            best_offer = offers[0]
+        if best_bid > best_offer:
+            trades.append(('SELL', data['symbol'], best_bid[0] + 1, 10))
+            trades.append(('SELL', data['symbol'], best_offer[0] - 1, 10))
     return trades

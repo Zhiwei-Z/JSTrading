@@ -20,6 +20,8 @@ class ExchangeConnection:
         hello = self.read()
         assert hello['type'] == 'hello'
 
+        self.last_data = None
+
         self.order_id = 0
         self.latest_books = {
             "BOND": [None],
@@ -30,6 +32,7 @@ class ExchangeConnection:
             "WFC": [None],
             "XLF": [None]
         }
+
 
     def read(self, store_last=True):  # read from exchange
         data = self.stream.readline()
