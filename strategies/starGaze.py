@@ -42,12 +42,13 @@ def trade(exchange):
     slow = 'VALE'
     fast_book = books_dict[fast][0]
     slow_book = books_dict[slow][0]
-    fp = fair_price(fast_book)
-    hb, buy_size = highest_buy(slow_book)
-    ls, sell_size = lowest_sell(slow_book)
-    if hb > fp:
-        trades.append(('SELL', slow, hb, sell_size))
-    if ls < fp:
-        trades.append(('BUY', slow, ls, buy_size))
+    if fast_book and slow_book:
+        fp = fair_price(fast_book)
+        hb, buy_size = highest_buy(slow_book)
+        ls, sell_size = lowest_sell(slow_book)
+        if hb > fp:
+            trades.append(('SELL', slow, hb, sell_size))
+        if ls < fp:
+            trades.append(('BUY', slow, ls, buy_size))
 
     return trades
