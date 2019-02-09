@@ -9,23 +9,29 @@ def trade(exchange):
     if GSb:
         best_bid = highest_buy(GSb)
         best_offer = lowest_sell(GSb)
-        if best_bid[0] - 1 > best_offer[0] + 1:
-            trades.append(('BUY', 'GS', best_offer[0] + 1, best_offer[1]))
-            trades.append(('SELL', 'GS', best_bid[0] - 1, best_bid[1]))
+        # if best_bid[0] - 1 > best_offer[0] + 1:
+        #     trades.append(('BUY', 'GS', best_offer[0] + 1, best_offer[1]))
+        #     trades.append(('SELL', 'GS', best_bid[0] - 1, best_bid[1]))
+        trades.append(('BUY', 'GS', best_offer[0] + 1, best_offer[1]))
+        trades.append(('SELL', 'GS', best_bid[0] - 1, best_bid[1]))
 
     if MSb:
         best_bid = highest_buy(MSb)
         best_offer = lowest_sell(MSb)
-        if best_bid[0] - 1 > best_offer[0] + 1:
-            trades.append(('BUY', 'MS', best_offer[0] + 1, best_offer[1]))
-            trades.append(('SELL', 'MS', best_bid[0] - 1, best_bid[1]))
+        # if best_bid[0] - 1 > best_offer[0] + 1:
+        #     trades.append(('BUY', 'MS', best_offer[0] + 1, best_offer[1]))
+        #     trades.append(('SELL', 'MS', best_bid[0] - 1, best_bid[1]))
+        trades.append(('BUY', 'MS', best_offer[0] + 1, best_offer[1]))
+        trades.append(('SELL', 'MS', best_bid[0] - 1, best_bid[1]))
 
     if WFCb:
         best_bid = highest_buy(WFCb)
         best_offer = lowest_sell(WFCb)
-        if best_bid[0] - 1 > best_offer[0] + 1:
-            trades.append(('BUY', 'WFC', best_offer[0] + 1, best_offer[1]))
-            trades.append(('SELL', 'WFC', best_bid[0] - 1, best_bid[1]))
+        # if best_bid[0] - 1 > best_offer[0] + 1:
+        #     trades.append(('BUY', 'WFC', best_offer[0] + 1, best_offer[1]))
+        #     trades.append(('SELL', 'WFC', best_bid[0] - 1, best_bid[1]))
+        trades.append(('BUY', 'WFC', best_offer[0] + 1, best_offer[1]))
+        trades.append(('SELL', 'WFC', best_bid[0] - 1, best_bid[1]))
 
 
     # if books_dict['type'] == 'book' and books_dict['symbol'] in ("GS", "MS", "WFC"):
@@ -34,7 +40,8 @@ def trade(exchange):
     #     if best_bid > best_offer:
     #         trades.append(('SELL', books_dict['symbol'], best_bid[0] + 1, 10))
     #         trades.append(('SELL', books_dict['symbol'], best_offer[0] - 1, 10))
-    # return trades
+    # return tra
+    # des
 
 
 def lowest_sell(book):
