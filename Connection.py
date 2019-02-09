@@ -36,7 +36,6 @@ class ExchangeConnection:
             "XLF": [None]
         }
 
-
     def read(self, store_last=True):  # read from exchange
         data = self.stream.readline()
         if data == "":
@@ -47,6 +46,12 @@ class ExchangeConnection:
                 self.last_data = data
                 if data["type"] == "book":
                     self.latest_books[data["symbol"]][0] = data
+                if data['type'] == "fill":
+                    if data['dir'] == "BUY":
+                        self.holdings[data["symbol"]] += data["size"]
+                    elif data['dir'] == "SELL":
+                        self.holdings[data["symbol"]] -= data["size"]
+                    print("Order filled:", data["dir"], data["size"], data["symbol"], "at price", data["price"])
             return data
 
     def write(self, data):  # write to exchange
@@ -57,7 +62,7 @@ class ExchangeConnection:
         trade = {'type': 'add', 'order_id': self.order_id, 'symbol': symbol,
                  'dir': buysell, 'price': price, 'size': size}
         self.order_id += 1
-        #print(trade)
+        # print(trade)
         self.write(trade)
 
     def trade_batch(self, trades):
