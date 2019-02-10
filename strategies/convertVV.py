@@ -39,11 +39,11 @@ def trade(exchange):
         hb2, buy_size2 = highest_buy(fast_book)
         ls2, sell_size2 = lowest_sell(fast_book)
         fps = (hb2 + ls2) / 2
-        if fpf > fps + 10:
+        if fpf > fps + 100:
             trades.append(('BUY', slow, hb2 + 1, 10))
             trades.append(('CONVERT', 'SELL', slow, 10))
             trades.append(('SELL', fast, ls1 - 1, 10))
-        if fpf + 10 < fps:
+        if fpf + 100 < fps:
             trades.append(('BUY', fast, hb1 + 1, 10))
             trades.append(('CONVERT', 'SELL', fast, 10))
             trades.append(('SELL', slow, ls2 - 1, 10))
