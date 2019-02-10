@@ -71,12 +71,12 @@ class ExchangeConnection:
             trade = {'type': 'add', 'order_id': self.order_id, 'symbol': symbol,
                      'dir': buysell, 'price': price, 'size': size}
             self.order_id += 1
-            if self.order_id > 5000:
-                self.cancel(self.order_id - 5000)
             # print(trade)
             self.write(trade)
         else:
             self.convert(*args[1:])
+        if self.order_id > 5000:
+            self.cancel(self.order_id - 5000)
 
     def cancel(self, order_id):
         cancel = {'type': 'cancel', 'order_id': order_id}
@@ -91,5 +91,5 @@ class ExchangeConnection:
         trade = {'type': 'convert', 'order_id': self.order_id,
                  'symbol': symbol, 'dir': buysell, 'size': size}
         self.order_id += 1
-        print(trade)
+        # print(trade)
         self.write(trade)
