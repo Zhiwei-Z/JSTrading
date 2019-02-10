@@ -48,5 +48,4 @@ def trade(exchange):
             trades.append(('CONVERT', 'SELL', fast, buy_size1))
             trades.append(('SELL', slow, ls2 - 1, buy_size1))
 
-        return trades
-    
+    return trades
