@@ -65,14 +65,18 @@ class ExchangeConnection:
         json.dump(data, self.stream)
         self.stream.write("\n")
 
-    def trade(self, buysell, symbol, price, size):
-        trade = {'type': 'add', 'order_id': self.order_id, 'symbol': symbol,
-                 'dir': buysell, 'price': price, 'size': size}
-        self.order_id += 1
-        if self.order_id > 5000:
-            self.cancel(self.order_id - 5000)
-        # print(trade)
-        self.write(trade)
+    def trade(self, *args):
+        if args[0] != "CONVERT":
+            buysell, symbol, price, size = args
+            trade = {'type': 'add', 'order_id': self.order_id, 'symbol': symbol,
+                     'dir': buysell, 'price': price, 'size': size}
+            self.order_id += 1
+            if self.order_id > 5000:
+                self.cancel(self.order_id - 5000)
+            # print(trade)
+            self.write(trade)
+        else:
+            self.convert(*args[1:])
 
     def cancel(self, order_id):
         cancel = {'type': 'cancel', 'order_id': order_id}
