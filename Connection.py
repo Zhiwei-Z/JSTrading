@@ -48,7 +48,7 @@ class ExchangeConnection:
                 self.last_data = data
                 if data["type"] == "book":
                     #self.latest_books[data["symbol"]][0] = data
-                    self.latest_books[data["symbol"]] = self.latest_books[data["symbol"]][1], data
+                    self.latest_books[data["symbol"]] = data, self.latest_books[data["symbol"]][0]
                 if data['type'] == "fill":
                     if data['dir'] == "BUY":
                         self.holdings[data["symbol"]] += data["size"]
