@@ -84,8 +84,6 @@ class ExchangeConnection:
         self.write(cancel)
 
     def trade_batch(self, trades):
-        if len(trades)==0:
-            return
         for buysell, symbol, price, size in trades:
             if buysell and size != 0:
                 self.trade(buysell, symbol, price, size)
