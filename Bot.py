@@ -1,4 +1,3 @@
-import time
 def import_module(module_name):
     """Helper function to import module"""
     import sys
@@ -20,10 +19,8 @@ class Bot:
         """
         data = self.exchange.read()
         while data:
-            time.sleep(0.5)
             trades = []
-            data = self.exchange.read()
             for strategy in self.strategies:
                 trades.extend(strategy.trade(self.exchange))
             self.exchange.trade_batch(trades)
-
+            data = self.exchange.read()
