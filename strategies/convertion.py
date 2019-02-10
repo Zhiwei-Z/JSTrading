@@ -54,7 +54,7 @@ def trade(exchange):
         #     trades.append(('BUY', 'MS', mfp, 3))
         #     trades.append(('BUY', 'WFC', wfp, 2))
         #     trades.append(('CONVERT', 'BUY', 'XLF', 10))
-        #     trades.append(('SELL', 'WFC', wfp, 10))
+        #     trades.append(('SELL', 'XLF', xfp, 10))
 
         if prediced_fair > xfp + 100:
             trades.append(('BUY', 'BOND', bfp, 3))
