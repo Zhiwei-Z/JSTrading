@@ -65,7 +65,7 @@ def trade(exchange):
             trades.append(('SELL', 'XLF', xfp, 10))
 
         elif prediced_fair + 100 < xfp:
-            trades.append(('BUY', 'WFC', wfp, 10))
+            trades.append(('BUY', 'SLP', xfp, 10))
             trades.append(('CONVERT', 'SELL', 'XLF', 10))
             trades.append(('SELL', 'BOND', bfp, 3))
             trades.append(('SELL', 'GS', gfp, 2))
