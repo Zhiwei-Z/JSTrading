@@ -27,13 +27,13 @@ def trade(exchange):
     holdings = exchange.holdings
     holds = holdings['XLF']
     trades = []
-    Bondb = books_dict['BOND'][0]
+    # Bondb = books_dict['BOND'][0]
     GSb = books_dict['GS'][0]
     MSb = books_dict['MS'][0]
     WFCb = books_dict['WFC'][0]
     XLFb = books_dict['XLF'][0]
-    if Bondb and GSb and MSb and WFCb and XLFb:
-        bfp = fair_price(Bondb)
+    if GSb and MSb and WFCb and XLFb:
+        bfp = 1000
         gfp = fair_price(GSb)
         mfp = fair_price(MSb)
         wfp = fair_price(WFCb)
@@ -41,5 +41,16 @@ def trade(exchange):
         prediced_fair = (3 * bfp + 2 * gfp + 3 * mfp + 2 * wfp) / 10
         if prediced_fair > wfp:
             trades.append(('BUY', 'WFC', wfp, 10))
-            trades.append(('SELL', 'GS', bfp, ))
+            trades.append(('SELL', 'BOND', bfp, 3))
+            trades.append(('SELL', 'GS', gfp, 2))
+            trades.append(('SELL', 'MS',mfp, 3))
+            trades.append(('SELL', 'WFC', wfp, 2))
 
+        elif prediced_fair < wfp:
+            trades.append(('SELL', 'WFC', wfp, 10))
+            trades.append(('BUY', 'BOND', bfp, 3))
+            trades.append(('BUY', 'GS', gfp, 2))
+            trades.append(('BUY', 'MS',mfp, 3))
+            trades.append(('BUY', 'WFC', wfp, 2))
+
+    return trades
