@@ -40,20 +40,35 @@ def trade(exchange):
         xfp = fair_price(XLFb)
 
         prediced_fair = (3 * bfp + 2 * gfp + 3 * mfp + 2 * wfp)
-        if prediced_fair > xfp + 100:
-            trades.append(('BUY', 'XLF', xfp, 10))
-            trades.append(('CONVERT', 'SELL', 'XLF', 10))
-            trades.append(('SELL', 'BOND', bfp, 3))
-            trades.append(('SELL', 'GS', gfp, 2))
-            trades.append(('SELL', 'MS',mfp, 3))
-            trades.append(('SELL', 'WFC', wfp, 2))
+        # if prediced_fair > xfp + 100:
+        #     trades.append(('BUY', 'XLF', xfp, 10))
+        #     trades.append(('CONVERT', 'SELL', 'XLF', 10))
+        #     trades.append(('SELL', 'BOND', bfp, 3))
+        #     trades.append(('SELL', 'GS', gfp, 2))
+        #     trades.append(('SELL', 'MS',mfp, 3))
+        #     trades.append(('SELL', 'WFC', wfp, 2))
+        #
+        # elif prediced_fair + 100 < xfp:
+        #     trades.append(('BUY', 'BOND', bfp, 3))
+        #     trades.append(('BUY', 'GS', gfp, 2))
+        #     trades.append(('BUY', 'MS', mfp, 3))
+        #     trades.append(('BUY', 'WFC', wfp, 2))
+        #     trades.append(('CONVERT', 'BUY', 'XLF', 10))
+        #     trades.append(('SELL', 'WFC', wfp, 10))
 
-        elif prediced_fair + 100 < xfp:
+        if prediced_fair > xfp + 100:
             trades.append(('BUY', 'BOND', bfp, 3))
             trades.append(('BUY', 'GS', gfp, 2))
             trades.append(('BUY', 'MS', mfp, 3))
             trades.append(('BUY', 'WFC', wfp, 2))
             trades.append(('CONVERT', 'BUY', 'XLF', 10))
-            trades.append(('SELL', 'WFC', wfp, 10))
+            trades.append(('SELL', 'XLF', xfp, 10))
 
+        elif prediced_fair + 100 < xfp:
+            trades.append(('BUY', 'WFC', wfp, 10))
+            trades.append(('CONVERT', 'SELL', 'XLF', 10))
+            trades.append(('SELL', 'BOND', bfp, 3))
+            trades.append(('SELL', 'GS', gfp, 2))
+            trades.append(('SELL', 'MS', mfp, 3))
+            trades.append(('SELL', 'WFC', wfp, 2))
     return trades
