@@ -28,13 +28,13 @@ class ExchangeConnection:
 
         self.order_id = 0
         self.latest_books = {
-            "BOND": [None],
-            "VALBZ": [None],
-            "VALE": [None],
-            "GS": [None],
-            "MS": [None],
-            "WFC": [None],
-            "XLF": [None]
+            "BOND": [None, None],
+            "VALBZ": [None, None],
+            "VALE": [None, None],
+            "GS": [None, None],
+            "MS": [None, None],
+            "WFC": [None, None],
+            "XLF": [None, None]
         }
         self.time = 0
 
@@ -47,7 +47,8 @@ class ExchangeConnection:
             if store_last:
                 self.last_data = data
                 if data["type"] == "book":
-                    self.latest_books[data["symbol"]][0] = data
+                    #self.latest_books[data["symbol"]][0] = data
+                    self.latest_books[data["symbol"]] = self.latest_books[data["symbol"]][1], data
                 if data['type'] == "fill":
                     if data['dir'] == "BUY":
                         self.holdings[data["symbol"]] += data["size"]
