@@ -47,8 +47,8 @@ def trade_one(books_dict, stock):
         old_fair = (old_high_buy[0] + old_low_sell[0]) / 2
 
         if new_fair > old_fair and new_high_buy[0] + 1 < new_low_sell[0] - 1: # it's increasing
-            trades.append(('BUY', stock, 5, new_high_buy[0] + 1))
-            trades.append(('SELL', stock, 5, new_low_sell[0] - 1))
+            trades.append(('BUY', stock, new_high_buy[0] + 1, 5))
+            trades.append(('SELL', stock, new_low_sell[0] - 1, 5))
 
         # if new_fair < old_fair and new_high_buy[0] + 1 < new_low_sell[0] - 1: # it's increasing
         #     trades.append(('BUY', stock, 5, new_high_buy[0] + 1))
