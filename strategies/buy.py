@@ -27,9 +27,9 @@ def trade(exchange):
     # holdings = exchange.holdings
     # holds = holdings['XLF']
     trades = list()
-    trades.append(trade_one(books_dict, 'GS'))
-    trades.append(trade_one(books_dict, 'MS'))
-    trades.append(trade_one(books_dict, 'WFC'))
+    trades += trade_one(books_dict, 'GS')
+    trades += trade_one(books_dict, 'MS')
+    trades += trade_one(books_dict, 'WFC')
     return trades
 
 
