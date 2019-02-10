@@ -48,9 +48,9 @@ def trade(exchange):
         ls, sell_size = lowest_sell(slow_book)
         if hb > fp:
             trades.append(('SELL', slow, hb+1, buy_size))
-            trades.append(('BUY', fast, ls-1, buy_size/2))
+            trades.append(('BUY', fast, ls-1, buy_size//2))
         if ls < fp:
             trades.append(('BUY', slow, ls-1, sell_size))
-            trades.append(('SELL', fast, hb+1, sell_size/2))
+            trades.append(('SELL', fast, hb+1, sell_size//2))
 
     return trades
