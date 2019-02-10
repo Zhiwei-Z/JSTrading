@@ -30,29 +30,35 @@ def trade(exchange):
     trades += trade_one(books_dict, 'GS')
     trades += trade_one(books_dict, 'MS')
     trades += trade_one(books_dict, 'WFC')
+    trades += trade_one(books_dict, 'XLF')
+    trades += trade_one(books_dict, 'VALE')
+    trades += trade_one(books_dict, 'VALBZ')
+
     return trades
 
 
 def trade_one(books_dict, stock):
     trades = list()
     new_book = books_dict[stock][0]
-    old_book = books_dict[stock][1]
-    if new_book and old_book:
+    # old_book = books_dict[stock][1]
+    if new_book:
         new_low_sell = lowest_sell(new_book)
         new_high_buy = highest_buy(new_book)
-        new_fair = (new_high_buy[0] + new_low_sell[0]) / 2
+        # new_fair = (new_high_buy[0] + new_low_sell[0]) / 2
 
-        old_low_sell = lowest_sell(old_book)
-        old_high_buy = highest_buy(old_book)
-        old_fair = (old_high_buy[0] + old_low_sell[0]) / 2
+        # old_low_sell = lowest_sell(old_book)
+        # old_high_buy = highest_buy(old_book)
+        # old_fair = (old_high_buy[0] + old_low_sell[0]) / 2
 
-        if new_fair > old_fair and new_high_buy[0] + 1 < new_low_sell[0] - 1: # it's increasing
-            trades.append(('BUY', stock, new_high_buy[0] + 1, 5))
-            trades.append(('SELL', stock, new_low_sell[0] - 1, 5))
+        # if new_fair > old_fair and new_high_buy[0] + 1 < new_low_sell[0] - 1: # it's increasing
+        #     trades.append(('BUY', stock, new_high_buy[0] + 1, 5))
+        #     trades.append(('SELL', stock, new_low_sell[0] - 1, 5))
 
         # if new_fair < old_fair and new_high_buy[0] + 1 < new_low_sell[0] - 1: # it's increasing
         #     trades.append(('BUY', stock, 5, new_high_buy[0] + 1))
         #     trades.append(('SELL', stock, 5, new_low_sell[0] - 1))
+        trades.append(('BUY', stock, new_high_buy[0] + 1, 5))
+        # trades.append(('SELL', stock, new_low_sell[0] - 1, 5))
 
     return trades
 
