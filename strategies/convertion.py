@@ -19,7 +19,7 @@ def highest_buy(book):
 
 
 def fair_price(book):
-    return (lowest_sell(book)[0] + highest_buy(book)[0]) / 2
+    return (lowest_sell(book)[0] + highest_buy(book)[0]) // 2
 
 
 def trade(exchange):
